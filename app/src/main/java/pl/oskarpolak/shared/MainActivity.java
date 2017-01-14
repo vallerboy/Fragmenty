@@ -20,7 +20,8 @@ import butterknife.OnClick;
 
 public class MainActivity extends Activity {
 
-
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+         fragmentManager = getFragmentManager();
+         fragmentTransaction = fragmentManager.beginTransaction();
 
     }
 
@@ -35,17 +38,13 @@ public class MainActivity extends Activity {
 
     @OnClick(R.id.button)
     public void onBackClick() {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frameLayout, new RedFragment());
+        fragmentTransaction.replace(R.id.frameLayout, new RedFragment());
         fragmentTransaction.commit();
     }
 
     @OnClick(R.id.button2)
     public void onNextClick() {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frameLayout, new GreenFragment());
+        fragmentTransaction.replace(R.id.frameLayout, new GreenFragment());
         fragmentTransaction.commit();
     }
 
